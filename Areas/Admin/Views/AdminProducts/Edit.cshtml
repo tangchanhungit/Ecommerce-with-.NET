@@ -1,0 +1,112 @@
+﻿@model Ecommerce_web_app.Models.Product
+
+@{
+	ViewData["Title"] = "Chỉnh sửa sản phẩm:" + Model.ProductName;
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card">
+	<div class="card-body">
+		<form asp-action="Edit" asp-route-id="@Model.ProductId" method="post" enctype="multipart/form-data">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="ProductId" />
+			<input type="hidden" asp-for="Thumb" />
+			<input type="hidden" asp-for="DateCreated" />
+
+			<div class="form-group">
+				<label asp-for="ProductName">Tên sản phẩm</label>
+				<input type="text" class="form-control" asp-for="ProductName">
+			</div>
+			<div class="form-group">
+				<label asp-for="ShortDesc">Mô tả ngắn</label>
+				<input type="text" class="form-control" asp-for="ShortDesc">
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label asp-for="Price">Giá bán</label>
+					<input type="text" class="form-control" asp-for="Price">
+				</div>
+				<div class="form-group col-md-6">
+					<label asp-for="Discount">Discount</label>
+					<input type="text" class="form-control" asp-for="Discount">
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-6">
+					<label for="CatId">Danh mục sản phẩm</label>
+					<select class="custom-select" style="min-width:200px;" asp-for="CatId" asp-items="ViewBag.DanhMuc">
+						<option value="" disabled selected>Chọn danh mục</option>
+					</select>
+				</div>
+				<div class="form-group  col-6">
+					<label asp-for="UnitslStock">Tồn kho</label>
+					<input type="text" class="form-control" asp-for="UnitslStock">
+				</div>
+			</div>
+			<div class="row">
+				<div class="m-t-25">
+					<div class="form-group d-flex align-items-center">
+						<div class="switch m-r-10">
+							<input type="checkbox" asp-for="Active" checked="" />
+							<lable asp-for="Active"></lable>
+						</div>
+						<lable>Public</lable>
+
+					</div>
+					<div class="form-group d-flex align-items-center">
+						<div class="switch m-r-10">
+							<input type="checkbox" asp-for="HomeFlag" />
+							<lable asp-for="HomeFlag"></lable>
+						</div>
+						<lable>HomeFlag</lable>
+					</div>
+					<div class="form-group d-flex align-items-center">
+						<div class="switch m-r-10">
+							<input type="checkbox" asp-for="BestSellers" />
+							<lable asp-for="BestSellers"></lable>
+						</div>
+						<lable>BestSellers</lable>
+
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="font-weight-semibold">Ảnh đại diện</label>
+				<input name="fThumb" type="file" class="form-control-file" asp-for="Thumb">
+				<span asp-validation-for="Thumb" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label for="Title">Title</label>
+				<input asp-for="Title" type="text" class="form-control">
+				<span asp-validation-for="Title" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label for="MetaDesc">MetaDesc</label>
+				<input asp-for="MetaDesc" type="text" class="form-control">
+				<span asp-validation-for="MetaDesc" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label for="MetaKey">MetaKey</label>
+				<input asp-for="MetaKey" type="text" class="form-control">
+				<span asp-validation-for="MetaKey" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label for="Tags">Tags</label>
+				<input asp-for="Tags" type="text" class="form-control">
+				<span asp-validation-for="Tags" class="text-danger"></span>
+			</div>
+			<div class="form-group" id="Description">
+				<label for="Description">Mô tả sản phẩm</label>
+				<textarea asp-for="Desciption" rows="5" cols="1000" class="form-control"></textarea>
+				<span asp-validation-for="Desciption" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Lưu" class="btn btn-primary" />
+			</div>
+			<button class="btn btn-light"><a asp-action="Index">Đóng</a></button>
+		</form>
+	</div>
+</div>
+
+

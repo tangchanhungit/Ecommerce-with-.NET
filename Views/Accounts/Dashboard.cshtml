@@ -1,0 +1,57 @@
+﻿@model Ecommerce_web_app.Models.Customer
+
+@{
+	ViewData["Title"] = "Dashboard";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	List<Order> DanhSachDonHang = ViewBag.DonHang;
+	Ecommerce_web_app.ModelViews.ChangePasswordViewModel changePasswordViewModel = new Ecommerce_web_app.ModelViews.ChangePasswordViewModel();
+}
+
+<div class="container-fluid pb-5">
+	<div class="row px-xl-5">
+		<div class="col-lg-5 mb-30">
+			<div class="col-lg-9 h-auto mb-30">
+				<div class="h-100 bg-light p-30">
+					<ul role="tablist">
+						<li>
+							<a class="nav-link" id="account-dashboard-tab" data-bs-toggle="tab" href="#account-dashboard" role="tab" aria-selected="false">Thông tin tài khoản</a>
+						</li>
+						<li>
+							<a class="nav-link" id="products-list-tab" data-bs-toggle="tab" href="#product-list" role="tab" aria-selected="false">Danh sách đơn hàng</a>
+
+						</li>
+						<li>
+							<a class="nav-link" id="account-changepassword-tab" data-bs-toggle="tab" href="#account-password" role="tab" aria-selected="false">Thay đổi mật khẩu</a>
+
+						</li>
+						<li>
+							<a class="nav-link" id="account-logout-tab" data-bs-toggle="tab" href="/dang-xuat.html" role="tab" aria-selected="false">Đăng xuất</a>
+
+						</li>
+					</ul>
+					
+				</div>
+			</div>
+			
+		</div>
+		<div class="col-lg-5 mb-30">
+			<div class="col-lg-9 h-auto mb-30">
+			<div class="tab-pane fade show active" id="account-dashboard" role="tabpanel" aria-labelledby="account-dashboard-tab">
+				<div class="myaccount-dashboard">
+					<p>Xin chào, @Model.FullName</p>
+					<p>Email: @Model.Email</p>
+					<p>Số điện thoại: @Model.Phone</p>
+					<p>Địa chỉ: @Model.Address</p>
+				</div>
+			</div>
+			
+			<div class="tab-pane fade show active" id="product-list" role="tabpanel" aria-labelledby="account-dashboard-tab">
+					@await Html.PartialAsync("_DonHangPartialView",DanhSachDonHang)
+			</div>
+			<div class="tab-pane fade show active" id="account-password" role="tabpanel" aria-labelledby="account-changepassword-tab">
+				@await Html.PartialAsync("_ChangePasswordPartialView",changePasswordViewModel)
+			</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,59 @@
+﻿@model Ecommerce_web_app.ModelViews.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Đăng ký tài khoản";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center !important">
+        <div class="col-md-6 ">
+            <form asp-action="Register" method="post">
+                
+                @*<div class="header-sub-title col-md-6">
+                    <nav class="breadcrumb breadcrumb-dash">
+                        <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon-home m-r-5"></i>Home</a>
+                        <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminProducts" asp-action="Index">Trang chủ</a>
+                        @*<span class="breadcrumb-item active">Danh sách sản phẩm: page </span>
+                    </nav>
+                </div>*@
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h2 class="mb-4">Đăng Ký Tài Khoản</h2>
+                <div class="form-group">
+                    <label asp-for="FullName"></label>
+                    <input asp-for="FullName" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" type="email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phone"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" type="password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-success">Đăng Ký</button>
+                
+                <div class="form-group">
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

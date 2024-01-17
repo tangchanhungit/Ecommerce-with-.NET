@@ -1,0 +1,74 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<Ecommerce_web_app.Models.Page>
+
+@{
+	ViewData["Title"] = "Danh sách Page - Page: " + ViewBag.CurrentPage;
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="card-body">
+	<div class="header-sub-title col-md-6">
+		<nav class="breadcrumb breadcrumb-dash">
+			<a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon-home m-r-5"></i>Home</a>
+			<span class="breadcrumb-item active">Danh sách Page: page @ViewBag.CurrentPage </span>
+		</nav>
+	</div>
+	<div class="col-sm">
+		<div class=" col m-b-10 m-r-15">
+			<a class="btn-wrapper">
+				<a asp-controller="AdminPages" asp-action="Create" class="btn btn-primary text-white me-0">Add Page</a>
+			</a>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Page Name</th>
+					<th>Trạng Thái</th>
+					<th>#</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model != null)
+				{
+					foreach (var item in Model)
+					{
+						<tr>
+							<td>@item.PageId</td>
+							<td>
+								@item.PageName
+							</td>
+							<td>
+								@if (item.Published == true)
+								{
+									<div class="d-flex align-item-center">
+										<div class="badge badge-success badge-dot m-r-10"></div>
+										<div>Public</div>
+									</div>
+								}
+								else
+								{
+									<div class="d-flex align-item-center">
+										<div class="badge badge-success badge-dot m-r-10"></div>
+										<div>Non-Public</div>
+									</div>
+								}
+							</td>
+							<td>
+								<a class="btn btn-info btn-rounded m-r-5" asp-area="Admin" asp-controller="AdminPages" asp-action="Details" asp-route-id="@item.PageId">View</a>
+								<a class="btn btn-success btn-rounded m-r-5" asp-area="Admin" asp-controller="AdminPages" asp-action="Edit" asp-route-id="@item.PageId">Edit</a>
+								<a class="btn btn-danger btn-rounded m-r-5" asp-area="Admin" asp-controller="AdminPages" asp-action="Delete" asp-route-id="@item.PageId">Delete</a>
+							</td>
+						</tr>
+					}
+				}
+			</tbody>
+		</table>
+		<div aria-lable="Page navigation example">
+			<ul class="paginaion">
+				<pager class="pager-container" list="@Model" asp-area="Admin" asp-controller="AdminPages" asp-action="Index" />
+			</ul>
+		</div>
+	</div>
+</div>

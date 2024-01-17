@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"]</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/adminasset/vendors/feather/feather.css">
+    <link rel="stylesheet" href="~/adminasset/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/adminasset/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="~/adminasset/vendors/typicons/typicons.css">
+    <link rel="stylesheet" href="~/adminasset/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="~/adminasset/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="~/adminasset/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="~/adminasset/js/select.dataTables.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/adminasset/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/adminasset/images/favicon.png" />
+    @await RenderSectionAsync("Style",required: false)
+</head>
+<body>
+    <div class="container-scroller">
+        <!-- partial -->
+       
+        <div class="container-fluid page-body-wrapper">
+            @await Html.PartialAsync("_navbar.cshtml")
+            @await Html.PartialAsync("_sidebar.cshtml")
+            @RenderBody()
+        </div>
+        
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/adminasset/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="~/adminasset/vendors/chart.js/Chart.min.js"></script>
+    <script src="~/adminasset/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="~/adminasset/vendors/progressbar.js/progressbar.min.js"></script>
+
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="~/adminasset/js/off-canvas.js"></script>
+    <script src="~/adminasset/js/hoverable-collapse.js"></script>
+    <script src="~/adminasset/js/template.js"></script>
+    <script src="~/adminasset/js/settings.js"></script>
+    <script src="~/adminasset/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="~/adminasset/js/dashboard.js"></script>
+    <script src="~/adminasset/js/Chart.roundedBarCharts.js"></script>
+    <!-- End custom js for this page-->
+    @await Component.InvokeAsync("Notyf")
+    @await RenderSectionAsync("Scripts", required: false);
+</body>
+
+</html>
+

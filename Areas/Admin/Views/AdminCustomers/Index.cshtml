@@ -1,0 +1,75 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<Ecommerce_web_app.Models.Customer>
+@{
+	int CurrentPage = ViewBag.CurrentPage;
+	ViewData["Title"] = "Danh sách khách hàng" + CurrentPage;
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card-body">
+	<div class="header-sub-title col-md-6">
+		<nav class="breadcrumb breadcrumb-dash">
+			<a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon-home m-r-5"></i>Home</a>
+			<span class="breadcrumb-item active">Danh sách khách hàng : page @CurrentPage </span>
+		</nav>
+	</div>
+	<div class="row m-b-30">
+		<div class="col-lg-12">
+			<div class="d-md-flex">
+				<div class="m-b-10 m-r-15">
+					<select class="custom-select" style="min-width:180px;" id="idrole" name="idrole" asp-items="ViewBag.QuyenTruyCap">
+						<option value="0" disabled selected>Chọn quyền truy cập</option>
+					</select>
+				</div>
+				<div class="m-b-10">
+					<select class="custom-select" style="min-width:200px;" id="idstatus" name="idstatus" asp-items="ViewBag.ListActive">
+						<option value="" disabled selected>Chọn trạng thái</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Họ và tên</th>
+					<th>Số điện thoại</th>
+					<th>Địa chỉ</th>
+					<th>Tỉnh/Thành</th>
+					<th>#</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model != null)
+				{
+					foreach (var item in Model)
+					{
+						<tr>
+							<td>@item.CustomerId</td>
+							<td>@item.Phone</td>
+							<td>
+								<p>@item.FullName</p>
+								<p>@item.Phone</p>
+								<p>@item.Email</p>
+							</td>
+							<td>@item.Address</td>
+							<td>@item.Location.Name</td>
+							<td>
+								<a class="btn btn-info btn-rounded m-r-5" asp-area="Admin" asp-controller="AdminCustomers" asp-action="Details" asp-route-id="@item.CustomerId">View</a>
+								<a class="btn btn-success btn-rounded m-r-5" asp-area="Admin" asp-controller="AdminCustomers" asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a>
+								<a class="btn btn-danger btn-rounded m-r-5" asp-area="Admin" asp-controller="AdminCustomers" asp-action="Delete" asp-route-id="@item.CustomerId">Delete</a>
+							</td>
+						</tr>
+					}
+				}
+			</tbody>
+		</table>
+		<div aria-lable ="Page navigation example">
+			<ul class="paginaion">
+				<pager class="pager-container" list="@Model" asp-area="Admin" asp-controller="AdminCustomers" asp-action="Index"/>
+			</ul>
+		</div>
+	</div>
+</div>
